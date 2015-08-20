@@ -32,7 +32,7 @@ file '/etc/supermarket/supermarket.json' do
   group "root"
   mode "0644"
   content JSON.pretty_generate(node['supermarket_omnibus'])
-  notifies :reconfigure, "chef_ingredient 'supermarket'"
+  notifies :reconfigure, "chef_ingredient[supermarket]"
 end
 
 if node['supermarket_package']['package_source']
@@ -46,7 +46,7 @@ if node['supermarket_package']['package_source']
   end
 end
 
-chef_server_ingredient 'supermarket' do
+chef_ingredient 'supermarket' do
   ctl_command '/opt/supermarket/bin/supermarket-ctl'
 
   # Prefer package_source if set over custom repository
