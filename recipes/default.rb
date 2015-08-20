@@ -32,7 +32,7 @@ file '/etc/supermarket/supermarket.json' do
   group "root"
   mode "0644"
   content JSON.pretty_generate(node['supermarket_omnibus'])
-  notifies :reconfigure, 'chef_server_ingredient[supermarket]'
+  notifies :reconfigure, "chef_ingredient 'supermarket'"
 end
 
 if node['supermarket_package']['package_source']
@@ -58,5 +58,5 @@ chef_server_ingredient 'supermarket' do
     repository node['supermarket_package']['packagecloud_repo']
   end
 
-  notifies :reconfigure, 'chef_server_ingredient[supermarket]'
+  notifies :reconfigure, 'chef_ingredient[supermarket]'
 end
