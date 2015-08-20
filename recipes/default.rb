@@ -51,9 +51,6 @@ chef_ingredient 'supermarket' do
   if node['supermarket_package']['package_source']
     Chef::Log.info "Using Supermarket package source: #{node['supermarket_package']['package_source']}"
     package_source cache_path
-  else
-    Chef::Log.info "Using Supermarket packagecloud repo #{node['supermarket_package']['packagecloud_repo']}"
-    package_source node['supermarket_package']['packagecloud_repo']
   end
 
   notifies :reconfigure, 'chef_ingredient[supermarket]'
