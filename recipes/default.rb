@@ -47,8 +47,6 @@ if node['supermarket_package']['package_source']
 end
 
 chef_ingredient 'supermarket' do
-  ctl_command '/opt/supermarket/bin/supermarket-ctl'
-
   # Prefer package_source if set over custom repository
   if node['supermarket_package']['package_source']
     Chef::Log.info "Using Supermarket package source: #{node['supermarket_package']['package_source']}"
