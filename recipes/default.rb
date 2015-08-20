@@ -55,7 +55,7 @@ chef_ingredient 'supermarket' do
     package_source cache_path
   else
     Chef::Log.info "Using Supermarket packagecloud repo #{node['supermarket_package']['packagecloud_repo']}"
-    repository node['supermarket_package']['packagecloud_repo']
+    package_source node['supermarket_package']['packagecloud_repo']
   end
 
   notifies :reconfigure, 'chef_ingredient[supermarket]'
